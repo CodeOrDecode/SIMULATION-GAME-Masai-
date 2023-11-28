@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMULATION GAME</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+    function Vehicle(brand, model, speed, fuelType) {
+        this.brand = brand;
+        this.model = model;
+        this.speed = speed;
+        this.fuelType = fuelType;
+    }
+    Vehicle.prototype.accelerate = function () {
+        this.speed = this.speed + 1;
+        console.log(this.speed);
+    }
+
+    Vehicle.prototype.brake = function () {
+        this.speed = this.speed - 1;
+        console.log(this.speed);
+    }
+
+    Vehicle.prototype.refuel = function () {
+        console.log("Refuel the vehicle...");
+    }
+
+    function Car(brand, model, speed, fuelType, numberOfWheels) {
+        Vehicle.call(this, brand, model, speed, fuelType,)
+        this.numberOfWheels = numberOfWheels;
+        this.honk = function () {
+            console.log("Honking Sound...")
+        }
+    }
+    Object.setPrototypeOf(Car.prototype, Vehicle.prototype)
+
+
+    function Airplane(brand, model, speed, fuelType, numberOfEngines, hasLandingGear) {
+        Vehicle.call(this, brand, model, speed, fuelType,)
+        this.numberOfEngines = numberOfEngines;
+        this.hasLandingGear = hasLandingGear;
+        this.takeOff = function () {
+            console.log("Airplane is taking off...")
+        }
+    }
+    Object.setPrototypeOf(Airplane.prototype, Vehicle.prototype)
+
+
+    let vehicle1 = new Vehicle("Zanella ", "Z-C2", 150, "Petrol");
+    let car1 = new Car("Bentley", "Z-C2", 220, "Petrol", 4);
+    let Airplane1 = new Airplane("Airbus", "E-C2", 550, "Diesel", 6, true);
+    Airplane1.takeOff();
+</script>
